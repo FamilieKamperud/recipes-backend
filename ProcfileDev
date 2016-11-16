@@ -1,2 +1,1 @@
-neo4j: ./neo4j-wrapper.sh
-api: node-dev server.js
+api: node-dev src/server.js
