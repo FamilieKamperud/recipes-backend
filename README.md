@@ -16,3 +16,10 @@ They must all be available in the command line
 ```
 ./build.sh
 ```
+
+## TODO
+
+- Security (frontend and API)
+- Backup (neo4j database)
+- Test/prod environment setup (docker)
+- Continuous deployment (with tests)
