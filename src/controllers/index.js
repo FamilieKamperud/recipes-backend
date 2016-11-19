@@ -1,9 +1,9 @@
 var user = require('./user');
 var recipe = require('./recipe');
 
-module.exports.set = function(app) {
+module.exports.set = function(app, driver) {
 
-  user.set(app);
-  recipe.set(app);
+  user.set(app, driver);
+  recipe.set(app, driver);
 
 }
