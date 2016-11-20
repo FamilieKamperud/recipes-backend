@@ -8,18 +8,21 @@ var controllers = require('./controllers');
 
 var app = express();
 
-// all environments
+// All environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser()); //TODO, stop using body parser like this
 
+// Create one driver to reuse accross all routes
+var router = express.Router();
 var driver = neo4j.driver("bolt://localhost:7687.", neo4j.auth.basic("neo4j", "hanna"));
-controllers.set(app, driver);
+controllers.use(router, driver);
+
+app.use('/api', router);
 
 var server = http.createServer(app);
-
 server.listen(3000, () => {
   console.log('Example app listening on port 3000!')
 });

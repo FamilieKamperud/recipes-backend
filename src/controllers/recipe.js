@@ -1,6 +1,6 @@
 var uuid = require('uuid');
 
-module.exports.set = function(app, driver) {
+module.exports.use = function(app, driver) {
 
   // List all recipes
   app.get('/recipes', (req, res) => {
