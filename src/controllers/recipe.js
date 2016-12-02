@@ -1,4 +1,7 @@
 var uuid = require('uuid');
+var validator = require('paperwork');
+
+var recipeTemplate = require('./validation/recipe-template');
 
 module.exports.use = function(app, driver) {
 
@@ -19,10 +22,10 @@ module.exports.use = function(app, driver) {
   });
 
   // Create a Recipe authored by a User
-  app.post('/recipe', (req, res) => {
+  app.post('/recipe', validator.accept(recipeTemplate), (req, res) => {
     var session = driver.session();
 
-    var userName = req.body.username,
+    var userName = req.body.username, //TODO, check if user exists
         title = req.body.title,
         ingredients = req.body.ingredients,
         steps = req.body.steps,
@@ -74,7 +77,7 @@ module.exports.use = function(app, driver) {
   });
 
   // Edit a Recipe authored by a User
-  app.put('/recipe/:id', (req, res) => {
+  app.put('/recipe/:id', validator.accept(recipeTemplate), (req, res) => {
     var session = driver.session();
 
     var userName = req.body.username,
