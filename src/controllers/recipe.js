@@ -26,14 +26,23 @@ module.exports.use = function(app, driver) {
         title = req.body.title,
         ingredients = req.body.ingredients,
         steps = req.body.steps,
-        id = req.body.id || uuid.v4(); //Use provided id or uuid
+        id = req.body.id || uuid.v4()
+        timestamp = new Date(); //Use provided id or uuid
 
         //TODO, Validate unique provided Id
 
     session
       .run( `
         MATCH (n:User) WHERE n.username="${userName}"
-        CREATE (a:Recipe { title:'${title}', ingredients:'${ingredients}', steps:'${steps}', uniqueid:'${id}', active:'true', author:'${userName}'})
+        CREATE (a:Recipe {
+          title:'${title}',
+          ingredients:'${ingredients}',
+          steps:'${steps}',
+          uniqueid:'${id}',
+          active:'true',
+          author:'${userName}',
+          created:'${timestamp}'
+        })
         CREATE (n)-[:AUTHOR]->(a)
         `)
       .then( ( result ) => {
@@ -72,7 +81,8 @@ module.exports.use = function(app, driver) {
         title = req.body.title,
         ingredients = req.body.ingredients,
         steps = req.body.steps,
-        id = req.params.id;
+        id = req.params.id
+        timestamp = new Date();
 
 
     session
@@ -87,7 +97,8 @@ module.exports.use = function(app, driver) {
           steps:'${steps}',
           uniqueid:'${id}',
           active:'true',
-          author:'${userName}'
+          author:'${userName}',
+          created:'${timestamp}'
         })
         CREATE (user)-[:AUTHOR]->(new)
         CREATE (new)-[:PREVIOUS_VERSION]->(old)

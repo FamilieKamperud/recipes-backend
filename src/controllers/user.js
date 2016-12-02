@@ -20,10 +20,12 @@ module.exports.use = function(app, driver) {
   app.post('/user/:username', (req, res) => {
     var session = driver.session();
 
-    var username = req.params.username;
+    var username = req.params.username,
+        joined = new Date();
+
 
     session
-      .run( `CREATE (a:User { username:'${username}'})`)
+      .run( `CREATE (a:User { username:'${username}', joined:'${joined}'})`)
       .then( function( result ) {
         session.close();
         res.send(result);
