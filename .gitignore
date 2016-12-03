@@ -43,8 +43,9 @@ jspm_packages
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
+# Yarn
 .yarn-integrity
+.yarn-cache.tgz
 
 # Environment variables
 .env

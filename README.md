@@ -24,3 +24,4 @@ They must all be available in the command line
 - Test/prod environment setup (docker)
 - Continuous deployment (with tests)
 - OWASP
+- refine responses from endpoints

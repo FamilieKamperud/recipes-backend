@@ -17,10 +17,17 @@ app.use(bodyParser()); //TODO, stop using body parser like this
 
 // Create one driver to reuse accross all routes
 var router = express.Router();
-var driver = neo4j.driver("bolt://localhost:7687.", neo4j.auth.basic("neo4j", "hanna"));
+var driver = neo4j.driver("bolt://neo4j:7687.", neo4j.auth.basic("neo4j", "Hanna"));
 controllers.use(router, driver);
 
 app.use('/api', router);
+
+// Healthcheck
+app.get('/', (req, res) => {
+  res.send({
+    healthy: true
+  });
+});
 
 var server = http.createServer(app);
 server.listen(3000, () => {

@@ -1,0 +1,17 @@
+neo4j:
+  image: neo4j:3.0.6
+  environment:
+    - "NEO4J_AUTH=neo4j/Hanna"
+  ports:
+    - "7474:7474"
+    - "7687:7687"
+  expose:
+       - "7687"
+       - "7474"
+
+recipe-backend:
+  build: .
+  ports:
+    - "3000:3000"
+  links:
+    - neo4j
