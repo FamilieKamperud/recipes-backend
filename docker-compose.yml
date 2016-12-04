@@ -4,10 +4,8 @@ neo4j:
     - "NEO4J_AUTH=neo4j/Hanna"
   ports:
     - "7474:7474"
-    - "7687:7687"
   expose:
        - "7687"
-       - "7474"
 
 recipe-backend:
   build: .
@@ -15,3 +13,7 @@ recipe-backend:
     - "3000:3000"
   links:
     - neo4j
+#  environment:
+#    - NODE_ENV=development
+#  volumes:
+#    - ./src:/usr/src/app/src

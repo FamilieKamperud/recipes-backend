@@ -3,11 +3,9 @@
 ## Prerequisites
 
 ### Must be installed
-- Node.js v6.9.1 and npm v3.10.8
-- Neo4j v3.0.6
-- Yarn v0.17.0
+- Docker
 
-They must all be available in the command line
+Must be available in the command line
 
 ## Development
 
@@ -17,11 +15,18 @@ They must all be available in the command line
 ./build.sh
 ```
 
+### To hot-reload app
+
+To run the app for development, comment in lines in docker-compose.yml file.
+
+Environment variable means that node-dev is run instead of node
+
+Volumes is mounting out local files into the container so that changes locally will propagte to the container
+
 ## TODO
 
 - Security (frontend and API)
 - Backup (neo4j database)
-- Test/prod environment setup (docker)
 - Continuous deployment (with tests)
 - OWASP
 - refine responses from endpoints
